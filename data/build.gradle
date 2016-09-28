@@ -29,7 +29,9 @@ dependencies {
     androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    testCompile "junit:junit:$rootProject.ext.junitVersion"
 
     compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
-    testCompile "junit:junit:$rootProject.ext.junitVersion"
+    compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
+    compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
 }

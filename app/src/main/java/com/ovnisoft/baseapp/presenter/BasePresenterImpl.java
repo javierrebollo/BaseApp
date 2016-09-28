@@ -13,7 +13,7 @@ public abstract class BasePresenterImpl<V extends BaseView, N extends BaseNaviga
         this.mNavigator = navigator;
     }
 
-    public N getNavigatorInterface() {
+    public N getNavigator() {
         return mNavigator;
     }
 }
