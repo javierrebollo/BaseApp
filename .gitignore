@@ -6,9 +6,6 @@
 # files for the dex VM
 *.dex
 
-# Java class files
-*.class
-
 # generated files
 bin/
 gen/
@@ -27,6 +24,8 @@ gen/
 # Built application files
 /build
 /app/build
+/data/build
+/domain/build
 
 # Signing files
 .signing/
