@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 interface BaseRequest {
     Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl(RequestUrls.USER_GET)
+            .baseUrl(RequestUrls.BASE_URL)
             .client(new OkHttpClient())
             .addConverterFactory(GsonConverterFactory.create())
             .build();
