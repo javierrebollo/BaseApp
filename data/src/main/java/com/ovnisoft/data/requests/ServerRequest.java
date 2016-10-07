@@ -81,7 +81,7 @@ public class ServerRequest<T extends BaseEntity> {
 
     @SuppressWarnings("unchecked")
     private void postRequest(String url, T body, final Callback<T> callback) {
-        PostBaseRequest<T> postBaseRequest = PostBaseRequest.retrofit.create(PostBaseRequest.class);
+        final PostBaseRequest<T> postBaseRequest = PostBaseRequest.retrofit.create(PostBaseRequest.class);
         Call<T> call = postBaseRequest.postRequest(url, body);
 
         call.enqueue(new retrofit2.Callback<T>() {
@@ -127,5 +127,5 @@ public class ServerRequest<T extends BaseEntity> {
         });
     }
 
-    private enum type {GET, POST, PUT, DELETE}
+    public enum type {GET, POST, PUT, DELETE}
 }
