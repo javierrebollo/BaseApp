@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ovnisoft.baseapp.AndroidDependencyInjector;
-import com.ovnisoft.presenter.BasePresenter;
+import com.ovnisoft.baseapp.presenter.BasePresenter;
 import com.ovnisoft.tracker.TrackerController;
 import com.ovnisoft.view.BaseView;
 
@@ -31,12 +31,6 @@ public abstract class BaseViewImpl<P extends BasePresenter> extends Fragment imp
         initComponent(view);
         setListeners();
         return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        /* Make whatever we want when the fragment is created */
     }
 
     /**
