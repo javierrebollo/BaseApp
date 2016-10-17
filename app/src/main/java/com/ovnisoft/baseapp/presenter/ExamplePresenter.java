@@ -8,4 +8,8 @@ public class ExamplePresenter extends BasePresenter<ExampleView, ExampleNavigato
     public ExamplePresenter(ExampleView view, ExampleNavigator navigator) {
         super(view, navigator);
     }
+
+    public void openGetScreen() {
+        mNavigator.openGetScreen();
+    }
 }

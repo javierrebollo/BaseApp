@@ -35,4 +35,13 @@ public class EntityExample implements BaseEntity {
     public void setBody(String body) {
         this.body = body;
     }
+
+    @Override
+    public String toString() {
+        return "EntityExample{" + "\n" +
+                "userId=" + userId + "\n" +
+                ", title='" + title + "\n" +
+                ", body='" + body + "\n" +
+                '}';
+    }
 }

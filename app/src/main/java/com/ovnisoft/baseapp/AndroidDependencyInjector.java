@@ -5,8 +5,14 @@ import android.content.Context;
 
 import com.ovnisoft.DependencyInjector;
 import com.ovnisoft.baseapp.presenter.ExamplePresenter;
+import com.ovnisoft.baseapp.presenter.GetDataPresenter;
 import com.ovnisoft.baseapp.tracker.TrackerControllerImpl;
 import com.ovnisoft.baseapp.view.ExampleView;
+import com.ovnisoft.baseapp.view.GetDataView;
+import com.ovnisoft.data.controller.EntityExampleController;
+import com.ovnisoft.data.controller.EntityExampleControllerImpl;
+import com.ovnisoft.data.entity.EntityExample;
+import com.ovnisoft.data.requests.ServerRequest;
 import com.ovnisoft.navigator.ExampleNavigator;
 import com.ovnisoft.tracker.TrackerController;
 
@@ -29,10 +35,23 @@ public class AndroidDependencyInjector extends DependencyInjector {
     }
 
     //******************
+    //*** CONTROLLER ***
+    //******************
+
+    @Override
+    protected EntityExampleController provideEntityExampleController() {
+        return new EntityExampleControllerImpl(new ServerRequest<EntityExample>());
+    }
+
+    //******************
     //*** PRESENTERS ***
     //******************
     public ExamplePresenter provideExamplePresenter(ExampleView view, ExampleNavigator navigator) {
         return new ExamplePresenter(view, navigator);
+    }
+
+    public GetDataPresenter provideGetDataPresenter(GetDataView view, ExampleNavigator navigator) {
+        return new GetDataPresenter(view, navigator, provideGetDataInteractor());
     }
 
     @Override

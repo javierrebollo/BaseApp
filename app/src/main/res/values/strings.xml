@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">BaseApp</string>
     <string name="get_data">Get Data</string>
+    <string name="post_data">Post Data</string>
+    <string name="put_data">Put Data</string>
+    <string name="delete_data">Delete Data</string>
+    <string name="hint_example_id">Example ID</string>
 </resources>

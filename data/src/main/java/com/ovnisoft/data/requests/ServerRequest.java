@@ -1,6 +1,6 @@
 package com.ovnisoft.data.requests;
 
-import com.ovnisoft.data.callbacks.Callback;
+import com.ovnisoft.data.callbacks.CallbackDataRequest;
 import com.ovnisoft.data.entity.BaseEntity;
 
 import java.io.IOException;
@@ -9,30 +9,30 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 public class ServerRequest<T extends BaseEntity> {
-    public void request(type requestType, String url, Callback<T> callback) {
+    public void request(type requestType, String url, CallbackDataRequest<T> callbackDataRequest) {
         switch (requestType) {
             case GET:
-                getRequest(url, callback);
+                getRequest(url, callbackDataRequest);
                 break;
             case DELETE:
-                deleteRequest(url, callback);
+                deleteRequest(url, callbackDataRequest);
                 break;
         }
     }
 
-    public void request(type requestType, String url, T body, Callback<T> callback) {
+    public void request(type requestType, String url, T body, CallbackDataRequest<T> callbackDataRequest) {
         switch (requestType) {
             case POST:
-                postRequest(url, body, callback);
+                postRequest(url, body, callbackDataRequest);
                 break;
             case PUT:
-                putRequest(url, body, callback);
+                putRequest(url, body, callbackDataRequest);
                 break;
         }
     }
 
     @SuppressWarnings("unchecked")
-    private void getRequest(String url, final Callback<T> callback) {
+    private void getRequest(String url, final CallbackDataRequest<T> callbackDataRequest) {
         GetBaseRequest<T> getBaseRequest = GetBaseRequest.retrofit.create(GetBaseRequest.class);
         Call<T> call = getBaseRequest.getRequest(url);
 
@@ -41,22 +41,22 @@ public class ServerRequest<T extends BaseEntity> {
             public void onResponse(Call<T> call, Response<T> response) {
                 try {
                     T object = call.execute().body();
-                    callback.onResponse(object);
+                    callbackDataRequest.onResponse(new com.ovnisoft.data.requests.Response<T>(object, response.code()));
 
                 } catch (IOException e) {
-                    callback.onFailure(null);
+                    callbackDataRequest.onFailure(null);
                 }
             }
 
             @Override
             public void onFailure(Call<T> call, Throwable t) {
-                callback.onFailure(null);
+                callbackDataRequest.onFailure(null);
             }
         });
     }
 
     @SuppressWarnings("unchecked")
-    private void deleteRequest(String url, final Callback<T> callback) {
+    private void deleteRequest(String url, final CallbackDataRequest<T> callbackDataRequest) {
         DeleteBaseRequest<T> deleteBaseRequest = DeleteBaseRequest.retrofit.create(DeleteBaseRequest.class);
         Call<T> call = deleteBaseRequest.deleteRequest(url);
 
@@ -65,22 +65,22 @@ public class ServerRequest<T extends BaseEntity> {
             public void onResponse(Call<T> call, Response<T> response) {
                 try {
                     T object = call.execute().body();
-                    callback.onResponse(object);
+                    callbackDataRequest.onResponse(new com.ovnisoft.data.requests.Response<T>(object, response.code()));
 
                 } catch (IOException e) {
-                    callback.onFailure(null);
+                    callbackDataRequest.onFailure(null);
                 }
             }
 
             @Override
             public void onFailure(Call<T> call, Throwable t) {
-                callback.onFailure(null);
+                callbackDataRequest.onFailure(null);
             }
         });
     }
 
     @SuppressWarnings("unchecked")
-    private void postRequest(String url, T body, final Callback<T> callback) {
+    private void postRequest(String url, T body, final CallbackDataRequest<T> callbackDataRequest) {
         final PostBaseRequest<T> postBaseRequest = PostBaseRequest.retrofit.create(PostBaseRequest.class);
         Call<T> call = postBaseRequest.postRequest(url, body);
 
@@ -89,22 +89,22 @@ public class ServerRequest<T extends BaseEntity> {
             public void onResponse(Call<T> call, Response<T> response) {
                 try {
                     T object = call.execute().body();
-                    callback.onResponse(object);
+                    callbackDataRequest.onResponse(new com.ovnisoft.data.requests.Response<T>(object, response.code()));
 
                 } catch (IOException e) {
-                    callback.onFailure(null);
+                    callbackDataRequest.onFailure(null);
                 }
             }
 
             @Override
             public void onFailure(Call<T> call, Throwable t) {
-                callback.onFailure(null);
+                callbackDataRequest.onFailure(null);
             }
         });
     }
 
     @SuppressWarnings("unchecked")
-    private void putRequest(String url, T body, final Callback<T> callback) {
+    private void putRequest(String url, T body, final CallbackDataRequest<T> callbackDataRequest) {
         PutBaseRequest<T> putBaseRequest = PutBaseRequest.retrofit.create(PutBaseRequest.class);
         Call<T> call = putBaseRequest.putRequest(url, body);
 
@@ -113,16 +113,16 @@ public class ServerRequest<T extends BaseEntity> {
             public void onResponse(Call<T> call, Response<T> response) {
                 try {
                     T object = call.execute().body();
-                    callback.onResponse(object);
+                    callbackDataRequest.onResponse(new com.ovnisoft.data.requests.Response<T>(object, response.code()));
 
                 } catch (IOException e) {
-                    callback.onFailure(null);
+                    callbackDataRequest.onFailure(null);
                 }
             }
 
             @Override
             public void onFailure(Call<T> call, Throwable t) {
-                callback.onFailure(null);
+                callbackDataRequest.onFailure(null);
             }
         });
     }
