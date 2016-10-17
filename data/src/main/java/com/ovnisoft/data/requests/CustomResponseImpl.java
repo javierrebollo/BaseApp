@@ -1,19 +1,23 @@
 package com.ovnisoft.data.requests;
 
-public class Response<T> {
+import com.ovnisoft.data.request.CustomResponse;
+
+public class CustomResponseImpl<T> implements CustomResponse<T> {
 
     private int mCode;
     private T mResponse;
 
-    Response(T response, int code) {
+    CustomResponseImpl(T response, int code) {
         mResponse = response;
         mCode = code;
     }
 
+    @Override
     public int getCode() {
         return mCode;
     }
 
+    @Override
     public T getResponse() {
         return mResponse;
     }

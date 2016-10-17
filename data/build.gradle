@@ -32,6 +32,6 @@ dependencies {
     testCompile "junit:junit:$rootProject.ext.junitVersion"
 
     compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
-    compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
-    compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
+    compile "com.squareup.okhttp3:okhttp:$rootProject.ext.okhttpVersion"
+    compile group: "com.google.code.gson", name: "gson", version: "$rootProject.ext.gsonVersion"
 }

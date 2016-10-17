@@ -12,6 +12,7 @@ import com.ovnisoft.baseapp.view.GetDataView;
 import com.ovnisoft.data.controller.EntityExampleController;
 import com.ovnisoft.data.controller.EntityExampleControllerImpl;
 import com.ovnisoft.data.entity.EntityExample;
+import com.ovnisoft.data.requests.DataNetMapper;
 import com.ovnisoft.data.requests.ServerRequest;
 import com.ovnisoft.navigator.ExampleNavigator;
 import com.ovnisoft.tracker.TrackerController;
@@ -40,7 +41,9 @@ public class AndroidDependencyInjector extends DependencyInjector {
 
     @Override
     protected EntityExampleController provideEntityExampleController() {
-        return new EntityExampleControllerImpl(new ServerRequest<EntityExample>());
+        return new EntityExampleControllerImpl(new ServerRequest<EntityExample>(
+                new DataNetMapper<EntityExample>(EntityExample.class)
+        ));
     }
 
     //******************
