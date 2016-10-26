@@ -1,19 +1,21 @@
 package com.ovnisoft.baseapp.presenter;
 
+import android.os.Handler;
+
 import com.ovnisoft.baseapp.view.GetDataView;
 import com.ovnisoft.data.callback.Callback;
 import com.ovnisoft.data.entity.EntityExample;
-import com.ovnisoft.interactor.GetDataInteractor;
 import com.ovnisoft.navigator.ExampleNavigator;
+import com.ovnisoft.usesCase.GetDataUseCase;
 
 public class GetDataPresenter extends BasePresenter<GetDataView, ExampleNavigator> {
 
-    private GetDataInteractor mGetDataInteractor;
+    private GetDataUseCase mGetDataUseCase;
 
-    public GetDataPresenter(GetDataView view, ExampleNavigator navigator, GetDataInteractor getDataInteractor) {
+    public GetDataPresenter(GetDataView view, ExampleNavigator navigator, GetDataUseCase getDataUseCase) {
         super(view, navigator);
 
-        mGetDataInteractor = getDataInteractor;
+        mGetDataUseCase = getDataUseCase;
     }
 
     public void getData(String entityExampleId) {
@@ -25,7 +27,7 @@ public class GetDataPresenter extends BasePresenter<GetDataView, ExampleNavigato
             //Set here control exception like a dialog or something like that
         }
 
-        mGetDataInteractor.getData(entityId, new Callback<EntityExample>() {
+        mGetDataUseCase.getData(entityId, new Callback<EntityExample>() {
             @Override
             public void onSuccess(EntityExample entityExample) {
                 setData(entityExample);
@@ -38,7 +40,13 @@ public class GetDataPresenter extends BasePresenter<GetDataView, ExampleNavigato
         });
     }
 
-    public void setData(EntityExample entityExample) {
-
+    public void setData(final EntityExample entityExample) {
+        Handler handler = new Handler(mView.getContext().getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                mView.setData(entityExample);
+            }
+        });
     }
 }

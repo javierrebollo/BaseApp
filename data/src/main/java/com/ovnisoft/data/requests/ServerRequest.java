@@ -64,10 +64,10 @@ public class ServerRequest<T extends BaseEntity> {
 
     private CustomResponse<T> getResponse(Request request) {
         CustomResponse<T> customResponse = null;
-        Response response = null;
+        Response response;
         try {
             response = mClient.newCall(request).execute();
-            String stringResponse = response.body().toString();
+            String stringResponse = response.body().string();
             Log.d(getClass().getCanonicalName(), "Response: " + stringResponse);
             customResponse = new CustomResponseImpl<>(
                     mDataNetMapper.parseToEntity(stringResponse),

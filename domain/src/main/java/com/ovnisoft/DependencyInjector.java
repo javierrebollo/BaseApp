@@ -1,8 +1,8 @@
 package com.ovnisoft;
 
 import com.ovnisoft.data.controller.EntityExampleController;
-import com.ovnisoft.interactor.GetDataInteractor;
 import com.ovnisoft.tracker.TrackerController;
+import com.ovnisoft.usesCase.GetDataUseCase;
 
 public abstract class DependencyInjector {
 
@@ -18,7 +18,7 @@ public abstract class DependencyInjector {
     //*** INTERACTOR ***
     //******************
 
-    public GetDataInteractor provideGetDataInteractor() {
-        return new GetDataInteractor(provideEntityExampleController());
+    protected GetDataUseCase provideGetDataInteractor() {
+        return new GetDataUseCase(provideEntityExampleController());
     }
 }

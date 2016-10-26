@@ -1,4 +1,4 @@
-package com.ovnisoft.interactor;
+package com.ovnisoft.usesCase;
 
 import com.ovnisoft.data.callback.Callback;
 import com.ovnisoft.data.controller.EntityExampleController;
@@ -6,11 +6,11 @@ import com.ovnisoft.data.entity.EntityExample;
 import com.ovnisoft.data.request.CustomResponse;
 import com.ovnisoft.data.request.ResponseCodes;
 
-public class GetDataInteractor {
+public class GetDataUseCase {
 
     private EntityExampleController mEntityExampleController;
 
-    public GetDataInteractor(EntityExampleController entityExampleController) {
+    public GetDataUseCase(EntityExampleController entityExampleController) {
         mEntityExampleController = entityExampleController;
     }
 
@@ -27,6 +27,6 @@ public class GetDataInteractor {
                     callback.onError();
                 }
             }
-        });
+        }).start();
     }
 }
