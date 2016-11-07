@@ -9,7 +9,7 @@ import com.ovnisoft.baseapp.AndroidDependencyInjector;
 import com.ovnisoft.navigator.BaseNavigator;
 import com.ovnisoft.tracker.TrackerController;
 
-public class BaseNavigatorImpl extends AppCompatActivity implements BaseNavigator {
+public abstract class BaseNavigatorImpl extends AppCompatActivity implements BaseNavigator {
 
     protected TrackerController mTrackerController;
 

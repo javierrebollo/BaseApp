@@ -10,8 +10,9 @@ import com.ovnisoft.baseapp.R;
 import com.ovnisoft.baseapp.presenter.GetDataPresenter;
 import com.ovnisoft.data.entity.EntityExample;
 import com.ovnisoft.navigator.ExampleNavigator;
+import com.ovnisoft.view.GetDataView;
 
-public class GetDataView extends BaseViewImpl<GetDataPresenter> {
+public class GetDataViewImpl extends BaseViewImpl<GetDataPresenter> implements GetDataView {
 
     private Button mBtnGetData;
     private EditText mExampleId;
@@ -44,6 +45,7 @@ public class GetDataView extends BaseViewImpl<GetDataPresenter> {
         });
     }
 
+    @Override
     public void setData(EntityExample entityExample) {
         mTvExampleData.setText(entityExample.toString());
     }

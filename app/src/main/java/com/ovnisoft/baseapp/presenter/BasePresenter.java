@@ -8,7 +8,7 @@ public abstract class BasePresenter<V extends BaseView, N extends BaseNavigator>
     V mView;
     N mNavigator;
 
-    public BasePresenter(V view, N navigator) {
+    BasePresenter(V view, N navigator) {
         this.mView = view;
         this.mNavigator = navigator;
     }

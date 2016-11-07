@@ -5,4 +5,6 @@
     <string name="put_data">Put Data</string>
     <string name="delete_data">Delete Data</string>
     <string name="hint_example_id">Example ID</string>
+    <string name="data_saved">Data saved correctly</string>
+    <string name="fail_data_saved">Fail to save data</string>
 </resources>

@@ -19,7 +19,7 @@ public class EntityExampleControllerImpl implements EntityExampleController {
         CustomResponse<EntityExample> customResponse =
                 mEntityExampleServerRequest.postRequest(RequestUrls.POST_ENTITY_EXAMPLE, entityExample);
 
-        return customResponse.getCode() == ResponseCodes.OK;
+        return customResponse.getCode() == ResponseCodes.CREATED;
     }
 
     @Override

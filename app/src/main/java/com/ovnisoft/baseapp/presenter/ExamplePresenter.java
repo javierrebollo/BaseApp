@@ -1,15 +1,19 @@
 package com.ovnisoft.baseapp.presenter;
 
-import com.ovnisoft.baseapp.view.ExampleView;
+import com.ovnisoft.baseapp.view.ExampleViewImpl;
 import com.ovnisoft.navigator.ExampleNavigator;
 
-public class ExamplePresenter extends BasePresenter<ExampleView, ExampleNavigator> {
+public class ExamplePresenter extends BasePresenter<ExampleViewImpl, ExampleNavigator> {
 
-    public ExamplePresenter(ExampleView view, ExampleNavigator navigator) {
+    public ExamplePresenter(ExampleViewImpl view, ExampleNavigator navigator) {
         super(view, navigator);
     }
 
     public void openGetScreen() {
         mNavigator.openGetScreen();
+    }
+
+    public void openPostScreen() {
+        mNavigator.openPostScreen();
     }
 }

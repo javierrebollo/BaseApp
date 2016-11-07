@@ -5,4 +5,6 @@ public interface ExampleNavigator extends BaseNavigator {
     void showDefaultFragment();
 
     void openGetScreen();
+
+    void openPostScreen();
 }

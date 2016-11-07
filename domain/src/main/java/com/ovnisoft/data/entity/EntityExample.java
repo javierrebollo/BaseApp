@@ -12,6 +12,12 @@ public class EntityExample implements BaseEntity {
         this.body = body;
     }
 
+    public EntityExample(String title, String body) {
+        this.userId = EMPTY_ID;
+        this.title = title;
+        this.body = body;
+    }
+
     public int getUserId() {
         return userId;
     }

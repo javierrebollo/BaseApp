@@ -3,6 +3,7 @@ package com.ovnisoft;
 import com.ovnisoft.data.controller.EntityExampleController;
 import com.ovnisoft.tracker.TrackerController;
 import com.ovnisoft.usesCase.GetDataUseCase;
+import com.ovnisoft.usesCase.SaveDataUseCase;
 
 public abstract class DependencyInjector {
 
@@ -15,10 +16,14 @@ public abstract class DependencyInjector {
 
 
     //******************
-    //*** INTERACTOR ***
+    //**** USE CASES ***
     //******************
 
-    protected GetDataUseCase provideGetDataInteractor() {
+    protected GetDataUseCase provideGetDataUseCase() {
         return new GetDataUseCase(provideEntityExampleController());
+    }
+
+    protected SaveDataUseCase provideSaveDataUseCase() {
+        return new SaveDataUseCase(provideEntityExampleController());
     }
 }

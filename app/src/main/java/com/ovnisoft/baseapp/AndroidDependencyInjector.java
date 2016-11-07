@@ -6,9 +6,11 @@ import android.content.Context;
 import com.ovnisoft.DependencyInjector;
 import com.ovnisoft.baseapp.presenter.ExamplePresenter;
 import com.ovnisoft.baseapp.presenter.GetDataPresenter;
+import com.ovnisoft.baseapp.presenter.PostDataPresenter;
 import com.ovnisoft.baseapp.tracker.TrackerControllerImpl;
-import com.ovnisoft.baseapp.view.ExampleView;
-import com.ovnisoft.baseapp.view.GetDataView;
+import com.ovnisoft.baseapp.view.ExampleViewImpl;
+import com.ovnisoft.baseapp.view.GetDataViewImpl;
+import com.ovnisoft.baseapp.view.PostDataViewImpl;
 import com.ovnisoft.data.controller.EntityExampleController;
 import com.ovnisoft.data.controller.EntityExampleControllerImpl;
 import com.ovnisoft.data.entity.EntityExample;
@@ -41,20 +43,24 @@ public class AndroidDependencyInjector extends DependencyInjector {
 
     @Override
     protected EntityExampleController provideEntityExampleController() {
-        return new EntityExampleControllerImpl(new ServerRequest<EntityExample>(
-                new DataNetMapper<EntityExample>(EntityExample.class)
+        return new EntityExampleControllerImpl(new ServerRequest<>(
+                new DataNetMapper<>(EntityExample.class)
         ));
     }
 
     //******************
     //*** PRESENTERS ***
     //******************
-    public ExamplePresenter provideExamplePresenter(ExampleView view, ExampleNavigator navigator) {
+    public ExamplePresenter provideExamplePresenter(ExampleViewImpl view, ExampleNavigator navigator) {
         return new ExamplePresenter(view, navigator);
     }
 
-    public GetDataPresenter provideGetDataPresenter(GetDataView view, ExampleNavigator navigator) {
-        return new GetDataPresenter(view, navigator, provideGetDataInteractor());
+    public GetDataPresenter provideGetDataPresenter(GetDataViewImpl view, ExampleNavigator navigator) {
+        return new GetDataPresenter(view, navigator, provideGetDataUseCase());
+    }
+
+    public PostDataPresenter providePostDataPresenter(PostDataViewImpl view, ExampleNavigator navigator) {
+        return new PostDataPresenter(view, navigator, provideSaveDataUseCase());
     }
 
     @Override

@@ -3,8 +3,9 @@ package com.ovnisoft.baseapp.navigator;
 import android.os.Bundle;
 
 import com.ovnisoft.baseapp.R;
-import com.ovnisoft.baseapp.view.ExampleView;
-import com.ovnisoft.baseapp.view.GetDataView;
+import com.ovnisoft.baseapp.view.ExampleViewImpl;
+import com.ovnisoft.baseapp.view.GetDataViewImpl;
+import com.ovnisoft.baseapp.view.PostDataViewImpl;
 import com.ovnisoft.navigator.ExampleNavigator;
 
 public class ExampleNavigatorImpl extends BaseNavigatorImpl implements ExampleNavigator {
@@ -18,13 +19,19 @@ public class ExampleNavigatorImpl extends BaseNavigatorImpl implements ExampleNa
 
     @Override
     public void showDefaultFragment() {
-        ExampleView exampleView = new ExampleView();
+        ExampleViewImpl exampleView = new ExampleViewImpl();
         replaceFragment(R.id.fl_container, exampleView);
     }
 
     @Override
     public void openGetScreen() {
-        GetDataView getDataView = new GetDataView();
+        GetDataViewImpl getDataView = new GetDataViewImpl();
         replaceFragment(R.id.fl_container, getDataView);
+    }
+
+    @Override
+    public void openPostScreen() {
+        PostDataViewImpl postDataView = new PostDataViewImpl();
+        replaceFragment(R.id.fl_container, postDataView);
     }
 }

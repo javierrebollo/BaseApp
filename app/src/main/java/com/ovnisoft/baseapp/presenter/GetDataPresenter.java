@@ -2,17 +2,17 @@ package com.ovnisoft.baseapp.presenter;
 
 import android.os.Handler;
 
-import com.ovnisoft.baseapp.view.GetDataView;
+import com.ovnisoft.baseapp.view.GetDataViewImpl;
 import com.ovnisoft.data.callback.Callback;
 import com.ovnisoft.data.entity.EntityExample;
 import com.ovnisoft.navigator.ExampleNavigator;
 import com.ovnisoft.usesCase.GetDataUseCase;
 
-public class GetDataPresenter extends BasePresenter<GetDataView, ExampleNavigator> {
+public class GetDataPresenter extends BasePresenter<GetDataViewImpl, ExampleNavigator> {
 
     private GetDataUseCase mGetDataUseCase;
 
-    public GetDataPresenter(GetDataView view, ExampleNavigator navigator, GetDataUseCase getDataUseCase) {
+    public GetDataPresenter(GetDataViewImpl view, ExampleNavigator navigator, GetDataUseCase getDataUseCase) {
         super(view, navigator);
 
         mGetDataUseCase = getDataUseCase;
