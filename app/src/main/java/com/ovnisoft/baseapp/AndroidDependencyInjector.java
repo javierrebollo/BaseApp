@@ -1,5 +1,6 @@
 package com.ovnisoft.baseapp;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 
@@ -21,8 +22,11 @@ import com.ovnisoft.tracker.TrackerController;
 
 public class AndroidDependencyInjector extends DependencyInjector {
 
+    @SuppressLint("StaticFieldLeak")
     private static AndroidDependencyInjector mInstance;
+    @SuppressLint("StaticFieldLeak")
     private static Context mContext;
+    @SuppressLint("StaticFieldLeak")
     private static Application mApplication;
 
     public static AndroidDependencyInjector getInstance() {
