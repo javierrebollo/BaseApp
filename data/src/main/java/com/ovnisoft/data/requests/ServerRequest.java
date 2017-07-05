@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.ovnisoft.data.entity.BaseEntity;
 import com.ovnisoft.data.request.CustomResponse;
+import com.ovnisoft.data.request.CustomResponseList;
 
 import java.io.IOException;
 
@@ -64,6 +65,24 @@ public class ServerRequest<T extends BaseEntity> {
 
     private CustomResponse<T> getResponse(Request request) {
         CustomResponse<T> customResponse = null;
+        Response response;
+        try {
+            response = mClient.newCall(request).execute();
+            String stringResponse = response.body().string();
+            Log.d(getClass().getCanonicalName(), "Response: " + stringResponse);
+            customResponse = new CustomResponseImpl<>(
+                    mDataNetMapper.parseToEntity(stringResponse),
+                    response.code()
+            );
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return customResponse;
+    }
+
+    private CustomResponse<T> getResponse(Request request) {
+        CustomResponseList<T> customResponse = null;
         Response response;
         try {
             response = mClient.newCall(request).execute();
