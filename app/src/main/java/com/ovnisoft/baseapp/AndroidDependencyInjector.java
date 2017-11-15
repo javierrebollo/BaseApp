@@ -15,6 +15,7 @@ import com.ovnisoft.baseapp.view.PostDataViewImpl;
 import com.ovnisoft.data.controller.EntityExampleController;
 import com.ovnisoft.data.controller.EntityExampleControllerImpl;
 import com.ovnisoft.data.entity.EntityExample;
+import com.ovnisoft.data.requests.ClientBuilder;
 import com.ovnisoft.data.requests.DataNetMapper;
 import com.ovnisoft.data.requests.ServerRequest;
 import com.ovnisoft.navigator.ExampleNavigator;
@@ -28,6 +29,7 @@ public class AndroidDependencyInjector extends DependencyInjector {
     private static Context mContext;
     @SuppressLint("StaticFieldLeak")
     private static Application mApplication;
+    private ClientBuilder mClientBuilder;
 
     public static AndroidDependencyInjector getInstance() {
         if (mInstance == null) {
@@ -41,15 +43,27 @@ public class AndroidDependencyInjector extends DependencyInjector {
         mContext = application.getBaseContext();
     }
 
+    //************************
+    //**** SERVER REQUEST ****
+    //************************
+    private ClientBuilder provideClientBuilder() {
+        if (mClientBuilder == null) {
+            mClientBuilder = new ClientBuilder();
+        }
+        return mClientBuilder;
+    }
+
+    private ServerRequest provideServerRequest(Class responseClass) {
+        return new ServerRequest<>(mContext, new DataNetMapper<>(responseClass), provideClientBuilder());
+    }
+
     //******************
     //*** CONTROLLER ***
     //******************
 
     @Override
     protected EntityExampleController provideEntityExampleController() {
-        return new EntityExampleControllerImpl(new ServerRequest<>(
-                new DataNetMapper<>(EntityExample.class)
-        ));
+        return new EntityExampleControllerImpl(provideServerRequest(EntityExample.class));
     }
 
     //******************

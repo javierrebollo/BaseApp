@@ -11,6 +11,8 @@ android {
     defaultConfig {
         applicationId "com.ovnisoft.baseapp"
 
+        vectorDrawables.useSupportLibrary = true
+
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
@@ -18,20 +20,38 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        release {
+            keyAlias 'release'
+            keyPassword 'docbrown0x'
+            storeFile file('../keystore/wave.keystore')
+            storePassword 'docbrown0x'
+        }
+    }
+
     buildTypes {
         release {
             debuggable false
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [providerRoute: "com.waveapplication.fileprovider"]
+            signingConfig signingConfigs.release
         }
 
         debug {
+            applicationIdSuffix ".dev"
             debuggable true
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [providerRoute: "com.waveapplication.dev.fileprovider"]
         }
+    }
+
+    aaptOptions {
+        additionalParameters "--no-version-vectors"
     }
 }
 

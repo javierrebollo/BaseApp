@@ -1,6 +1,8 @@
 package com.ovnisoft.data.request;
 
 public class ResponseCodes {
+    public static final int WITHOUT_CONNECTIVITY = -1;
+
     //2xx Success
     public static final int OK = 200;
     public static final int CREATED = 201;
