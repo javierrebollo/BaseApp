@@ -24,9 +24,9 @@ android {
     signingConfigs {
         release {
             keyAlias 'release'
-            keyPassword 'docbrown0x'
-            storeFile file('../keystore/wave.keystore')
-            storePassword 'docbrown0x'
+            keyPassword 'yourpass'
+            storeFile file('../keystore/your.keystore')
+            storePassword 'yourpass'
         }
     }
 
